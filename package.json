@@ -4,16 +4,16 @@
     "description": "My project description",
     "main": "index.js",
     "scripts": {
-      "start": "node index.js",
-      "test": "jest",
-      "lint": "eslint src/*.js src/**/*.js"
+        "start": "node index.js",
+        "test": "jest",
+        "lint": "eslint src/*.js src/**/*.js"
     },
     "dependencies": {
-      "express": "^4.17.1",
-      "body-parser": "^1.19.0",
-      "cors": "^2.8.5"
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.18.2"
     },
     "devDependencies": {
-      "jest": "^27.4.7"
+        "jest": "^27.4.7"
     }
-  }
+}
