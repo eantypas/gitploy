@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: BASIC Continuous Integration
 
 on:
   push:
