@@ -1,0 +1,26 @@
+{
+  "name": "gitploy-ci-testing",
+  "version": "0.0.1",
+  "description": "attempt for ci",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eantypas/gitploy.git"
+  },
+  "keywords": [
+    "git",
+    "ci",
+    "cd",
+    "full",
+    "workflow"
+  ],
+  "author": "eantypas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eantypas/gitploy/issues"
+  },
+  "homepage": "https://github.com/eantypas/gitploy#readme"
+}
