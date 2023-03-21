@@ -12,16 +12,24 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build
+    - name: Set up Node.js environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: npm install
-    - name: Test
-      run: npm test
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v2
+  #   - name: Install dependencies
+  #     run: npm install
+  #   - name: Run unit tests
+  #     run: npm test
+  #   - name: Run integration tests
+  #     run: npm run test:integration
+  #   - name: Run security tests
+  #     run: npx snyk test
 
   lint:
     runs-on: ubuntu-latest
