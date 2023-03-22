@@ -7,7 +7,7 @@ on:
     branches: [main, cd-testing]
 
 jobs:
-  staging:
+  web_staging:
     runs-on: ubuntu-latest
 
     steps:
