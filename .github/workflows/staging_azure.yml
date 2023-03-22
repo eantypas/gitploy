@@ -1,0 +1,26 @@
+name: Deploy to Azure DevOps
+
+on:
+  push:
+    branches: [main, cd-testing]
+  pull_request:
+    branches: [main, cd-testing]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install Azure CLI
+        uses: azure/setup-azure-cli@v1
+        with:
+          version: latest
+      # - name: Login to Azure
+      #   run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+      # - name: Deploy to Azure DevOps
+      #   run: |
+      #     az login --service-principal -u $AZURE_DEVOPS_APP_ID -p $AZURE_DEVOPS_APP_SECRET --tenant $AZURE_DEVOPS_TENANT_ID
+      #     az repos create --name <repo-name> --organization $AZURE_DEVOPS_ORGANIZATION_URL/$AZURE_DEVOPS_PROJECT_NAME --type git
+      #     git push --mirror https://<username>:${{ secrets.AZURE_DEVOPS_TOKEN }}@$AZURE_DEVOPS_ORGANIZATION_URL/$AZURE_DEVOPS_PROJECT_NAME/_git/<repo-name>
+

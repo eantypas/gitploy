@@ -5,9 +5,9 @@ on:
     branches: [main, cd-testing]
   pull_request:
     branches: [main, cd-testing]
-    
+
 jobs:
-  deploy:
+  aws_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
