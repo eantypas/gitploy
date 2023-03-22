@@ -7,7 +7,7 @@ on:
     branches: [main, cd-testing]
 
 jobs:
-  deploy:
+  azure_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
