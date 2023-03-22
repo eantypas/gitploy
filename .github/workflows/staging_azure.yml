@@ -14,9 +14,18 @@ jobs:
         uses: actions/checkout@v2
       - name: Login to Azure
         run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-      - name: Install Azure CLI
-        uses: azure/CLI@v1
-      
+      # - name: Install Azure CLI
+      #   uses: azure/CLI@v1
+      # - name: Clone repository
+      #   run: git clone https://github.com/eantypas/gitploy
+
+      # - name: Deploy to Azure DevOps
+      #   working-directory: ./gitploy
+      #   run: |
+      #     az devops login --organization <organization-url>
+      #     az repos create --name <repository-name> --project <project-name>
+      #     az repos push --name <repository-name> --project <project-name> --force --ref heads/main
+      #     az pipelines create --name <pipeline-name> --repository <repository-name> --branch main --yaml-path azure-pipelines.yml --project <project-name>
 
       # - name: Deploy to Azure DevOps
       #   run: |
