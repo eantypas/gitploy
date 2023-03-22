@@ -1,27 +1,27 @@
-# name: Staging Deployment to Virtual Machine
+name: Staging Deployment to Virtual Machine
 
-# on:
-#   push:
-#     branches: [main, cd-testing]
-#   pull_request:
-#     branches: [main, cd-testing]
+on:
+  push:
+    branches: [main, cd-testing]
+  pull_request:
+    branches: [main, cd-testing]
 
-# jobs:
-#   staging:
-#     runs-on: ubuntu-latest   
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-#     - name: Setup Node.js environment
-#       uses: actions/setup-node@v2
-#       with:
-#         node-version: '16.x'
-#     - name: Install dependencies
-#       run: npm install
-#     - name: Build app
-#       run: npm run build
-#     - name: Deploy to staging
-#       uses: easingthemes/ssh-deploy@v2
+jobs:
+  vm_staging:
+    runs-on: ubuntu-latest   
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+    - name: Install dependencies
+      run: npm install
+    - name: Build app
+      run: npm run build
+    # - name: Deploy to staging
+    #   uses: easingthemes/ssh-deploy@v2
 #       with:
 #         server: ${{ secrets.STAGING_SERVER }}
 #         port: ${{ secrets.STAGING_PORT }}
