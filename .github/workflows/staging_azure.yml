@@ -13,15 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-        shell: bash
+        uses: azure/CLI@v1
       - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      # - name: Login to Azure
-      #   run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
       # - name: Deploy to Azure DevOps
       #   run: |
       #     az login --service-principal -u $AZURE_DEVOPS_APP_ID -p $AZURE_DEVOPS_APP_SECRET --tenant $AZURE_DEVOPS_TENANT_ID
