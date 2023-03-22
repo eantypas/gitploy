@@ -12,10 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Login to Azure
-        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-      # - name: Install Azure CLI
-      #   uses: azure/CLI@v1
+      - name: Install Azure CLI
+        uses: azure/CLI@v1
+      # - name: Login to Azure
+      #   run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+      
       # - name: Clone repository
       #   run: git clone https://github.com/eantypas/gitploy
 
