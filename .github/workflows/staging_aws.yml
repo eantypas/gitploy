@@ -1,8 +1,11 @@
 name: Deploy to AWS CodeDeploy
+
 on:
   push:
-    branches:
-      - main
+    branches: [main, cd-testing]
+  pull_request:
+    branches: [main, cd-testing]
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
