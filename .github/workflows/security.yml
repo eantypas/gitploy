@@ -1,0 +1,75 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Snyk security scan for code vulnerabilities
+      - name: Snyk code scan
+        uses: snyk/actions/cli@v1
+        with:
+          args: test --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # Anchore Engine security scan for Docker images
+      # - name: Setup Anchore Engine
+      #   uses: anchore/anchore-engine-action@main
+      #   with:
+      #     anchore-cli-version: v0.9.4
+      #     anchore-policy-path: ./policy.json
+      #     # anchore-engine-url: ${{ secrets.ANCHORE_ENGINE_URL }}
+      #     # anchore-engine-user: ${{ secrets.ANCHORE_ENGINE_USER }}
+      #     # anchore-engine-pass: ${{ secrets.ANCHORE_ENGINE_PASS }}
+      #   env:
+      #     DOCKER_BUILDKIT: 1
+      # - name: Build and analyze Docker image with Anchore Engine
+      #   run: |
+      #     docker build -t my-image:latest .
+      #     docker run --rm \
+      #       -v $(pwd)/anchore-reports:/anchore-reports \
+      #       --entrypoint /usr/local/bin/anchore-cli \
+      #       my-image:latest \
+      #       image add my-image:latest && \
+      #       image wait my-image:latest && \
+      #       image analyze my-image:latest && \
+      #       report list my-image:latest && \
+      #       report generate my-image:latest --type html --output /anchore-reports/anchore-report.html
+
+      # Clair security scan for Docker images
+      - name: Setup Clair
+        uses: quay/clair-action@main
+        with:
+          image-name: my-image:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Run Clair scan
+        run: |
+          docker pull my-image:latest
+          docker run --rm \
+            -e DOCKER_USERNAME \
+            -e DOCKER_PASSWORD \
+            -v $(pwd)/clair-reports:/clair-reports \
+            quay.io/coreos/clair-git:v4.5.7 \
+            --clair-output /clair-reports/clair-report.json \
+            --clair-scan-log /clair-reports/clair-scan.log \
+            --config /config.yaml \
+            my-image:latest
+
+      # Upload reports as GitHub artifacts
+      - name: Upload reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: Security reports
+          path: |
+            ./anchore-reports/anchore-report.html
+            ./clair-reports/clair-report.json
+            ./clair-reports/clair-scan.log
