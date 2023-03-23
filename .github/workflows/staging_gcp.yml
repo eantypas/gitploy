@@ -27,8 +27,9 @@ jobs:
       - name: Build and deploy to Cloud Run
         run: |
           echo "${{ secrets.GCLOUD_AUTH }}" > key.json
-          gcloud auth activate-service-account --key-file=key.json
-          # gcloud auth activate-service-account --key-file=${{ env.KEY_FILE }}
+          ls -l key.json
+          cat key.json
+          gcloud auth activate-service-account --key-file=./key.json
           gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/gitploy --substitutions _ENVIRONMENT=staging,\
           _REGION=europe-west2 --project ${{ env.PROJECT_ID }} https://github.com/eantypas/gitploy.git
           gcloud run deploy gitploy --image gcr.io/${{ env.PROJECT_ID }}/gitploy --platform managed --region europe-west2
