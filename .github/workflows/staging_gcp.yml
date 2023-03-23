@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and deploy to Cloud Run
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" > key.json
+          echo "${{ secrets.GCLOUD_AUTH }}" > key.json
           gcloud auth activate-service-account --key-file=key.json
           # gcloud auth activate-service-account --key-file=${{ env.KEY_FILE }}
           gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/gitploy --substitutions _ENVIRONMENT=staging,\
