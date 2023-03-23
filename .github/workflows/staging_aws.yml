@@ -1,4 +1,4 @@
-name: Deploy to AWS CodeDeploy
+name: Staging Deployment to AWS CodeDeploy
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
       # - name: Deploy to AWS CodeDeploy
       #   run: |
       #     aws deploy create-deployment \
-      #       --application-name MyApp \
-      #       --deployment-group-name MyDeploymentGroup \
+      #       --application-name gitploy \
+      #       --deployment-group-name eantypas \
       #       --revision revisionType=GitHub,repository=${{ github.repository }},commitId=${{ github.sha }} \
       #       --region eu-west-2

@@ -1,4 +1,4 @@
-name: Google Cloud Build
+name: Staging Deployment to Google Cloud Build
 
 on:
   push:
@@ -24,6 +24,7 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
       - name: Build and deploy to Cloud Run
         run: |
-          gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/gitploy --tarball https://eantypas.github.io/gitploy/
+          gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/gitploy --substitutions _ENVIRONMENT=staging,\
+          _REGION=europe-west2 --project ${{ env.PROJECT_ID }} https://github.com/eantypas/gitploy.git
           gcloud run deploy gitploy --image gcr.io/${{ env.PROJECT_ID }}/gitploy --platform managed --region europe-west2
 

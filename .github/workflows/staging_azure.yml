@@ -1,4 +1,4 @@
-name: Deploy to Azure DevOps
+name: Staging Deployment to Azure DevOps
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Deploy to Docker Containers
+name: Staging Deployment to to Docker Containers
 
 on:
   push:
