@@ -30,7 +30,6 @@ jobs:
       - name: Build and deploy to Cloud Run
         run: |
           echo "${{ secrets.GCP_SA_KEY }}" > key.json
-          ls -l key.json
           cat key.json
           chmod 600 key.json
           gcloud auth activate-service-account --key-file=key.json
