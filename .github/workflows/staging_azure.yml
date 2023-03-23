@@ -25,8 +25,13 @@ jobs:
       with:
         app-name: 'gitploy'
         slot-name: 'staging'
-        # publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: .
+    - name: Trigger Azure DevOps pipeline
+      uses: Azure/cli@v1
+      with:
+        inlineScript: az pipelines run --name Release-1 --branch main
+      env:
+        AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_EXT_PAT }}
 
 
 
