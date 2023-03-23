@@ -24,6 +24,6 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
       - name: Build and deploy to Cloud Run
         run: |
-          gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/gitploy
+          gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/gitploy --tarball https://eantypas.github.io/gitploy/
           gcloud run deploy gitploy --image gcr.io/${{ env.PROJECT_ID }}/gitploy --platform managed --region europe-west2
 
