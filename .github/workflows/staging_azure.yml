@@ -34,6 +34,10 @@ jobs:
         inlineScript: az pipelines run --name Release-1 --branch main
       env:
         AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_EXT_PAT }}
+    - name: Deploy to Azure DevOps
+      run: |
+        az devops login --organization https://dev.azure.com/eantypas
+        az pipelines build queue --definition-name "gitops" --branch "main" --output none
 
 
 
