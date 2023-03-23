@@ -5,6 +5,7 @@
 
 trigger:
 - main
+- cd-testing
 
 pool:
   vmImage: ubuntu-latest
