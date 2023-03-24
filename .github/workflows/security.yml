@@ -13,7 +13,7 @@ jobs:
 
       # Snyk security scan for code vulnerabilities
       - name: Snyk code scan
-        uses: snyk/actions/cli
+        uses: snyk/actions/node@master
         with:
           args: test --severity-threshold=high
         env:
